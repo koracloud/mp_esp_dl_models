@@ -33,9 +33,8 @@ jobs:
     steps:
       - name: Get MicroPython latest release
         run: |
-          MPY_RELEASE=$(curl --silent "https://api.github.com/repos/micropython/micropython/releases/latest" | jq -r .tag_name)
-          echo "MPY_RELEASE=${MPY_RELEASE}" >> $GITHUB_ENV
-
+          echo "MPY_RELEASE=v1.26.0" >> $GITHUB_ENV
+          
       - name: Cache ESP-IDF and MicroPython
         id: cache_esp_idf
         uses: actions/cache@v4
@@ -91,9 +90,8 @@ jobs:
     steps:
       - name: Get MicroPython latest release
         run: |
-          MPY_RELEASE=$(curl --silent "https://api.github.com/repos/micropython/micropython/releases/latest" | jq -r .tag_name)
-          echo "MPY_RELEASE=${MPY_RELEASE}" >> $GITHUB_ENV
-
+          echo "MPY_RELEASE=v1.26.0" >> $GITHUB_ENV
+          
       - name: Cache ESP-IDF and MicroPython
         uses: actions/cache@v4
         with:
