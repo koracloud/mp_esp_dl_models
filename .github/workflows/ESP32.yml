@@ -114,6 +114,17 @@ jobs:
           source ${{ env.ESP_IDF_DIR }}/export.sh
           cd ${{ github.workspace }} && cd ..
           git clone https://github.com/cnadler86/micropython-camera-API.git
+          cat > micropython-camera-API/src/micropython.cmake << 'EOF'
+          add_library(usermod_camera INTERFACE)
+          target_sources(usermod_camera INTERFACE
+              ${CMAKE_CURRENT_LIST_DIR}/modcamera_api.c
+              ${CMAKE_CURRENT_LIST_DIR}/modcamera.c
+          )
+          target_include_directories(usermod_camera INTERFACE
+              ${CMAKE_CURRENT_LIST_DIR}
+          )
+          target_link_libraries(usermod INTERFACE usermod_camera)
+          EOF
           git clone https://github.com/cnadler86/mp_jpeg.git
           
           cd ${{ github.workspace }}/boards/
