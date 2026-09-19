@@ -126,6 +126,8 @@ jobs:
           target_link_libraries(usermod INTERFACE usermod_camera)
           EOF
           git clone https://github.com/cnadler86/mp_jpeg.git
+          mkdir -p mp_jpeg/src
+          echo 'include(${CMAKE_CURRENT_LIST_DIR}/../micropython.cmake)' > mp_jpeg/src/micropython.cmake
           
           cd ${{ github.workspace }}/boards/
           
